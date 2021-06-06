@@ -6,7 +6,7 @@ import {NotificationContainer, NotificationManager} from 'react-notifications';
 import setAuthToken from '../utils/setAuthToken'
 export const registerUser=(newUser,history)=>async(dispatch,getState)=>{
   console.log(newUser)
-    await axios.post('http://localhost:7000/api/signUp',newUser)
+    await axios.post('/api/signUp',newUser)
     .then(res=>{dispatch({
       type:REGISTER_USER,
       payload:res.data.message
@@ -25,7 +25,7 @@ export const registerUser=(newUser,history)=>async(dispatch,getState)=>{
 }
 export const emailActivation=(bodyParameters,config,data)=>async(dispatch,getState)=>{
   
-  axios.post('http://localhost:7000/api/emailActivate',bodyParameters,config)
+  axios.post('/api/emailActivate',bodyParameters,config)
   .then(res=>{dispatch({
     type:EMAIL_ACTIVATED,
     payload:res.data.message
@@ -43,7 +43,7 @@ export const emailActivation=(bodyParameters,config,data)=>async(dispatch,getSta
 }
 export const loginUser=(data,history)=>async(dispatch,getState)=>{
   
-  axios.post('http://localhost:7000/api/signIn',data)
+  axios.post('/api/signIn',data)
   .then(res=>{
     const { token } = res.data;
     const userData=res.data.user
